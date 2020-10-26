@@ -1,9 +1,9 @@
 name: Pub Score
 on:
   push:
-    branches: [ main ]
+    branches: [ v1.x.x ]
   pull_request:
-    branches: [ main ]
+    branches: [ v1.x.x ]
 
 jobs:
   pub-score:
