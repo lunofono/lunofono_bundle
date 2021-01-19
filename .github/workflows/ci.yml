@@ -43,12 +43,21 @@ jobs:
       if: matrix.test_type != 'static'
       run: flutter test --coverage
 
-    - name: Upload unit tests coverage to Codecov
+    - name: Upload ${{ matrix.test_type }} tests coverage to Codecov
       if: matrix.test_type != 'static'
       uses: codecov/codecov-action@v1
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-        file: coverage/lcov.info
-        flags: unit,flutter-${{ matrix.flutter_channel }}
+        # We can't use coverage/*.lcov.info because is not supported. See:
+        # https://github.com/codecov/codecov-bash/pull/400
+        files: '*.lcov.info'
+        flags: type-${{ matrix.test_type }},flutter-${{ matrix.flutter_channel }}
+
+    - name: Save coverage reports as artifacts
+      if: matrix.test_type != 'static'
+      uses: actions/upload-artifact@v2
+      with:
+        name: coverage-${{ matrix.test_type }}-flutter_${{ matrix.flutter_channel }}
+        path: coverage/*.lcov.info
 
 # vim: set et sw=2 sts=2 :
