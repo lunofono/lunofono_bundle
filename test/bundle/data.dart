@@ -7,7 +7,7 @@ const colorRed = Color(0xFFFF0000);
 const colorGreen = Color(0xFF00FF00);
 const colorBlue = Color(0xFF0000FF);
 
-const allColors = [
+const allColors = <Color>[
   colorRed,
   colorGreen,
   colorBlue,
@@ -19,7 +19,7 @@ final actionPlayAudio1 = PlayContentAction(audio1);
 final actionPlayImage1 = PlayContentAction(image1, loop: true);
 final actionPlayVideo1 = PlayContentAction(video1, loop: false);
 
-final allActions = [
+final allActions = <Action>[
   actionCloseMenu,
   actionShowMenuGrid1x1,
   actionPlayAudio1,
@@ -35,7 +35,7 @@ final coloredButtonRedPlayVideo1 = ColoredButton(actionPlayVideo1, colorRed);
 final coloredButtonGreenShowMenuGrid1x1 =
     ColoredButton(actionShowMenuGrid1x1, colorGreen);
 
-final allButtons = [
+final allButtons = <Button>[
   coloredButtonRedCloseMenu,
   coloredButtonGreenPlayAudio1,
   coloredButtonBluePlayImage1,
@@ -46,7 +46,7 @@ final allButtons = [
 final gridMenu1x1 = GridMenu(
   rows: 1,
   columns: 1,
-  buttons: [
+  buttons: <Button>[
     coloredButtonRedCloseMenu,
   ],
 );
@@ -54,7 +54,7 @@ final gridMenu1x1 = GridMenu(
 final gridMenu1x2 = GridMenu(
   rows: 1,
   columns: 2,
-  buttons: [
+  buttons: <Button>[
     coloredButtonRedCloseMenu,
     coloredButtonGreenPlayAudio1,
   ],
@@ -64,7 +64,7 @@ final gridMenu1x2 = GridMenu(
 final gridMenu2x1 = GridMenu(
   rows: 2,
   columns: 1,
-  buttons: [
+  buttons: <Button>[
     coloredButtonBluePlayImage1,
     coloredButtonRedPlayVideo1,
   ],
@@ -74,7 +74,7 @@ final gridMenu2x1 = GridMenu(
 final gridMenu2x2 = GridMenu(
   rows: 2,
   columns: 2,
-  buttons: [
+  buttons: <Button>[
     coloredButtonRedCloseMenu,
     coloredButtonGreenPlayAudio1,
     coloredButtonBluePlayImage1,
@@ -86,7 +86,7 @@ final gridMenu2x2 = GridMenu(
 final gridMenu1x4 = GridMenu(
   rows: 1,
   columns: 4,
-  buttons: [
+  buttons: <Button>[
     coloredButtonRedCloseMenu,
     coloredButtonGreenPlayAudio1,
     coloredButtonBluePlayImage1,
@@ -98,7 +98,7 @@ final gridMenu1x4 = GridMenu(
 final gridMenu5x1 = GridMenu(
   rows: 5,
   columns: 1,
-  buttons: [
+  buttons: <Button>[
     coloredButtonRedCloseMenu,
     coloredButtonGreenPlayAudio1,
     coloredButtonBluePlayImage1,
@@ -107,7 +107,7 @@ final gridMenu5x1 = GridMenu(
   ],
 );
 
-final allMenus = [
+final allMenus = <GridMenu>[
   gridMenu1x1,
   gridMenu1x2,
   gridMenu2x1,
