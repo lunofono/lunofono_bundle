@@ -6,13 +6,16 @@ on:
   pull_request:
     branches: [ v1.x.x ]
 
+env:
+  FLUTTER_CHANNEL: beta
+  JAVA_VERSION: 12.x
 
 jobs:
   test:
     strategy:
       fail-fast: false
       matrix:
-        flutter_version: [ "1.20", "1.22" ]
+        test_type: [ static, unit ]
 
     runs-on: ubuntu-latest
 
@@ -21,46 +24,40 @@ jobs:
 
     - uses: actions/setup-java@v1
       with:
-        java-version: '12.x'
+        java-version: ${{ env.JAVA_VERSION }}
 
     - uses: subosito/flutter-action@v1
       with:
-        flutter-version: ${{ matrix.flutter_version }}
-        channel: stable
+        channel: ${{ env.FLUTTER_CHANNEL }}
 
     - name: Install dependencies
       run: flutter pub get
 
-    # Analyze step needs different config for pull_request and push, so it is
-    # duplicated with if conditions to use the correct configuration for each
-    - name: Analyze (push)
-      if: ${{ github.event_name == 'push' }}
-      uses: kitek/dartanalyzer-annotations-action@v1  
-      env:
-        GITHUB_TOKEN: ${{ github.token }}
+    - name: Analyze
+      if: matrix.test_type == 'static'
+      uses: zgosalvez/github-actions-analyze-flutter@v1
       with:
-        check_name: test
-        commit_sha: ${{ github.sha }}
-    - name: Analyze (pull_request)
-      if: ${{ github.event_name == 'pull_request' }}
-      uses: kitek/dartanalyzer-annotations-action@v1  
-      env:
-        GITHUB_TOKEN: ${{ github.token }}
-      with:
-        check_name: test
-        commit_sha: ${{ github.event.pull_request.head.sha }}
+        fail-on-warnings: true
 
-    - name: Check format
-      run: flutter format -n --set-exit-if-changed lib test example
+    - name: Run ${{ matrix.test_type }} tests
+      if: matrix.test_type != 'static'
+      run: tool/ci test-${{ matrix.test_type }}
 
-    - name: Run unit tests
-      run: flutter test --coverage
-
-    - name: Upload unit tests coverage to Codecov
+    - name: Upload ${{ matrix.test_type }} tests coverage to Codecov
+      if: matrix.test_type != 'static'
       uses: codecov/codecov-action@v1
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-        file: coverage/lcov.info
-        flags: unit,flutter${{ matrix.flutter_version }}
+        # We can't use coverage/*.lcov.info because is not supported. See:
+        # https://github.com/codecov/codecov-bash/pull/400
+        files: '*.lcov.info'
+        flags: type-${{ matrix.test_type }},flutter-${{ env.FLUTTER_CHANNEL }}
+
+    - name: Save coverage reports as artifacts
+      if: matrix.test_type != 'static'
+      uses: actions/upload-artifact@v2
+      with:
+        name: coverage-${{ matrix.test_type }}-flutter_${{ env.FLUTTER_CHANNEL }}
+        path: coverage/*.lcov.info
 
 # vim: set et sw=2 sts=2 :

@@ -472,9 +472,9 @@ class MultiMedium extends Medium with EquatableMixin {
   MultiMedium.fromSingleMedium(SingleMedium medium)
       : assert(medium != null),
         assert(medium is Audible || medium is Visualizable),
-        mainTrack = medium is Visualizable
+        mainTrack = (medium is Visualizable
             ? VisualizableMultiMediumTrack([medium as Visualizable])
-            : AudibleMultiMediumTrack([medium as Audible]),
+            : AudibleMultiMediumTrack([medium as Audible])) as MultiMediumTrack,
         backgroundTrack = const NoTrack(),
         super(maxDuration: medium.maxDuration);
 
