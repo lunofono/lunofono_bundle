@@ -39,9 +39,9 @@ jobs:
       with:
         fail-on-warnings: true
 
-    - name: Run unit tests
+    - name: Run ${{ matrix.test_type }} tests
       if: matrix.test_type != 'static'
-      run: flutter test --coverage
+      run: tool/ci test-${{ matrix.test_type }}
 
     - name: Upload ${{ matrix.test_type }} tests coverage to Codecov
       if: matrix.test_type != 'static'
