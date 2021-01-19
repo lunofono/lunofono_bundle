@@ -15,6 +15,7 @@ jobs:
       fail-fast: false
       matrix:
         flutter_channel: [ "stable", "beta" ]
+        test_type: [ static, unit ]
 
     runs-on: ubuntu-latest
 
@@ -33,14 +34,17 @@ jobs:
       run: flutter pub get
 
     - name: Analyze
+      if: matrix.test_type == 'static'
       uses: zgosalvez/github-actions-analyze-flutter@v1
       with:
         fail-on-warnings: true
 
     - name: Run unit tests
+      if: matrix.test_type != 'static'
       run: flutter test --coverage
 
     - name: Upload unit tests coverage to Codecov
+      if: matrix.test_type != 'static'
       uses: codecov/codecov-action@v1
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
