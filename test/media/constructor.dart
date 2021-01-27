@@ -323,15 +323,15 @@ void testConstructorPlayList(
   List<Medium> media,
   InheritableConfig config,
 ) {
-  group('PlayList', () {
+  group('Playlist', () {
     group('success when', () {
       test('media [defaults]', () {
-        final playlist = PlayList(media);
+        final playlist = Playlist(media);
         expect(playlist.media, equals(media));
         expect(playlist.config, equals(inheritedConfig));
       });
       test('media, [explicit nulls]', () {
-        final playlist = PlayList(
+        final playlist = Playlist(
           media,
           config: null,
         );
@@ -339,7 +339,7 @@ void testConstructorPlayList(
         expect(playlist.config, equals(inheritedConfig));
       });
       test('media, [explicit defaults]', () {
-        final playlist = PlayList(
+        final playlist = Playlist(
           media,
           config: inheritedConfig,
         );
@@ -347,7 +347,7 @@ void testConstructorPlayList(
         expect(playlist.config, equals(inheritedConfig));
       });
       test('media, config', () {
-        final playlist = PlayList(
+        final playlist = Playlist(
           media,
           config: config,
         );
@@ -358,18 +358,18 @@ void testConstructorPlayList(
 
     group('assert when', () {
       test('null [defaults]', () {
-        expect(() => PlayList(null), throwsA(isA<AssertionError>()));
+        expect(() => Playlist(null), throwsA(isA<AssertionError>()));
       });
       test('null, config', () {
-        expect(() => PlayList(null, config: config),
+        expect(() => Playlist(null, config: config),
             throwsA(isA<AssertionError>()));
       });
       test('null, config: null', () {
         expect(
-            () => PlayList(null, config: null), throwsA(isA<AssertionError>()));
+            () => Playlist(null, config: null), throwsA(isA<AssertionError>()));
       });
       test('[]', () {
-        expect(() => PlayList(<Medium>[]), throwsA(isA<AssertionError>()));
+        expect(() => Playlist(<Medium>[]), throwsA(isA<AssertionError>()));
       });
     });
   });

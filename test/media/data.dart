@@ -91,7 +91,7 @@ final mediumList2 = <Medium>[
   multiMedium8v2a1,
 ];
 
-final playList1 = PlayList(
+final playList1 = Playlist(
   mediumList1,
   config: inheritableConfig1o1r1,
 );

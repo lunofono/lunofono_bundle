@@ -265,7 +265,7 @@ void testCopyWithMultiMedium<T1 extends MultiMediumTrack,
 }
 
 void testCopyWithPlayList({
-  PlayList original,
+  Playlist original,
   List<Medium> newMedia,
   InheritableConfig newConfig,
 }) {

@@ -12,12 +12,12 @@ export 'dart:ui' show Color;
 ///
 /// Bundles are the way Lunofono distributes content, and content is organized
 /// in one or more [Menu]s that consist of [Button]s, which when touched,
-/// reproduce some [Medium] or [PlayList] (or open a new sub-[Menu]). The main
+/// reproduce some [Medium] or [Playlist] (or open a new sub-[Menu]). The main
 /// menu of a bundle is called the [rootMenu].
 ///
 /// A bundle can have an optional [InheritableConfig] which defines some
 /// configuration options that can be overridden from the main app
-/// configuration, and can also be overridden by [Menu]s and [PlayList]s.
+/// configuration, and can also be overridden by [Menu]s and [Playlist]s.
 ///
 /// If [config] is [inheritedConfig] (the default when null),
 /// then the app main configuration will be used and inherited by the
@@ -28,7 +28,7 @@ class Bundle with EquatableMixin {
 
   /// Configuration that can be inherited from the app's configuration.
   ///
-  /// This configuration can also be overridden by [Menu]s and [PlayList]s.
+  /// This configuration can also be overridden by [Menu]s and [Playlist]s.
   final InheritableConfig config;
 
   /// Creates a content bundle.
@@ -66,7 +66,7 @@ class Bundle with EquatableMixin {
 /// A content menu.
 ///
 /// A Menu normally consists of [Button]s, which when touched, reproduce some
-/// [Medium] or [PlayList] (or open a new sub-[Menu]).
+/// [Medium] or [Playlist] (or open a new sub-[Menu]).
 ///
 /// A menu can have an optional [config] configuration that can be inherited
 /// from the parent and overridden by the children.
