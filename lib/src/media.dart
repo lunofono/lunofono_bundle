@@ -505,8 +505,8 @@ class MultiMedium extends Medium with EquatableMixin {
 }
 
 /// A list of media that can be played.
-class PlayList with EquatableMixin implements Playable {
-  /// List of media that this [PlayList] will play.
+class Playlist with EquatableMixin implements Playable {
+  /// List of media that this [Playlist] will play.
   final List<Medium> media;
 
   /// Playlist's [Orientation].
@@ -520,7 +520,7 @@ class PlayList with EquatableMixin implements Playable {
   /// the parent.
   ///
   /// The [media] list must not be empty.
-  const PlayList(
+  const Playlist(
     this.media, {
     InheritableConfig config,
   })  : assert(media != null),
@@ -529,14 +529,14 @@ class PlayList with EquatableMixin implements Playable {
   @override
   List<Object> get props => [media, config];
 
-  /// Creates a new [PlayList] based on this one, overriding some values.
+  /// Creates a new [Playlist] based on this one, overriding some values.
   ///
-  /// Values not specified as arguments will be copied from this [PlayList].
-  PlayList copyWith({
+  /// Values not specified as arguments will be copied from this [Playlist].
+  Playlist copyWith({
     List<Medium> media,
     InheritableConfig config,
   }) {
-    return PlayList(
+    return Playlist(
       media ?? this.media,
       config: config ?? this.config,
     );

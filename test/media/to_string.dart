@@ -134,12 +134,12 @@ void testToString() {
         'maxDuration: 0:00:00.000000)');
   });
 
-  test('PlayList', () {
-    final list = PlayList(<Medium>[FakeVisualizableMedium()],
+  test('Playlist', () {
+    final list = Playlist(<Medium>[FakeVisualizableMedium()],
         config: FakeInheritableConfig());
     expect(
         list.toString(),
-        'PlayList(media: [FakeVisualizableMedium], '
+        'Playlist(media: [FakeVisualizableMedium], '
         'config: FakeInheritableConfig)');
   });
 }

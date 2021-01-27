@@ -254,29 +254,29 @@ void testEqualityPlayList(
   List<Medium> otherMedia,
   InheritableConfig otherConfig,
 ) {
-  group('PlayList', () {
+  group('Playlist', () {
     group('==', () {
       test('media', () {
-        expect(PlayList(media), equals(PlayList(media)));
+        expect(Playlist(media), equals(Playlist(media)));
       });
 
       test('media, config', () {
-        final original = PlayList(media, config: config);
-        final clone = PlayList(media, config: config);
+        final original = Playlist(media, config: config);
+        final clone = Playlist(media, config: config);
         expect(original, equals(clone));
       });
     });
 
     group('!=', () {
       test('media', () {
-        final original = PlayList(media);
-        final other = PlayList(otherMedia);
+        final original = Playlist(media);
+        final other = Playlist(otherMedia);
         expect(original, isNot(equals(other)));
       });
 
       test('config', () {
-        final original = PlayList(media, config: config);
-        final other = PlayList(media, config: otherConfig);
+        final original = Playlist(media, config: config);
+        final other = Playlist(media, config: otherConfig);
         expect(original, isNot(equals(other)));
       });
     });
