@@ -44,9 +44,11 @@ void testToString() {
   });
 
   test('StyledButton', () {
-    final button = StyledButton(FakeAction(), FakeColor());
-    expect(button.toString(),
-        'StyledButton(action: FakeAction, backgroundColor: FakeColor)');
+    final button = StyledButton(FakeAction(), backgroundColor: FakeColor());
+    expect(
+        button.toString(),
+        'StyledButton(action: FakeAction, backgroundColor: FakeColor, '
+        'foregroundImage: null)');
   });
 
   test('ShowMenuAction', () {

@@ -177,15 +177,23 @@ abstract class Button {
   const Button(this.action) : assert(action != null);
 }
 
-/// A [Button] represented by a [Color].
+/// A [Button] with a customizable style.
 class StyledButton extends Button with EquatableMixin {
-  /// This button's background color.
+  /// Color to display as this button's background.
+  ///
+  /// If null, the player can automatically choose one or a global default might
+  /// be used.
   final Color backgroundColor;
 
+  /// The image to display in this button foreground.
+  ///
+  /// If null, no foreground image is displayed.
+  final Uri foregroundImage;
+
   /// Creates a button represented by a [backgroundColor].
-  const StyledButton(Action action, this.backgroundColor)
-      : assert(backgroundColor != null),
-        super(action);
+  const StyledButton(Action action,
+      {this.backgroundColor, this.foregroundImage})
+      : super(action);
   @override
   List<Object> get props => [action, backgroundColor];
 
@@ -193,13 +201,19 @@ class StyledButton extends Button with EquatableMixin {
   ///
   /// Values not specified as arguments will be copied from this
   /// [StyledButton].
+  ///
+  /// Note that this won't work to make a copy with some values set to null. If
+  /// you need to do that you'll have to do the copy manually by calling the
+  /// constructor explicitly.
   StyledButton copyWith({
     Action action,
     Color backgroundColor,
+    Uri foregroundImage,
   }) {
     return StyledButton(
       action ?? this.action,
-      backgroundColor ?? this.backgroundColor,
+      backgroundColor: backgroundColor ?? this.backgroundColor,
+      foregroundImage: foregroundImage ?? this.foregroundImage,
     );
   }
 
@@ -208,7 +222,8 @@ class StyledButton extends Button with EquatableMixin {
   String toString() {
     return '$runtimeType('
         'action: $action, '
-        'backgroundColor: $backgroundColor'
+        'backgroundColor: $backgroundColor, '
+        'foregroundImage: $foregroundImage'
         ')';
   }
 }

@@ -166,27 +166,44 @@ void testConstructorGridMenu(
 void testConstructorStyledButton(
   Action action,
   Color backgroundColor,
+  Uri foregroundImage,
 ) {
   group('StyledButton', () {
     group('success when', () {
+      test('action', () {
+        final button = StyledButton(action);
+        expect(button.action, equals(action));
+        expect(button.backgroundColor, isNull);
+        expect(button.foregroundImage, isNull);
+      });
       test('action, backgroundColor', () {
-        final button = StyledButton(action, backgroundColor);
+        final button = StyledButton(action, backgroundColor: backgroundColor);
         expect(button.action, equals(action));
         expect(button.backgroundColor, equals(backgroundColor));
+        expect(button.foregroundImage, isNull);
+      });
+      test('action, foregroundImage', () {
+        final button = StyledButton(action, foregroundImage: foregroundImage);
+        expect(button.action, equals(action));
+        expect(button.backgroundColor, isNull);
+        expect(button.foregroundImage, equals(foregroundImage));
+      });
+      test('action, backgroundColor, foregroundImage', () {
+        final button = StyledButton(action,
+            backgroundColor: backgroundColor, foregroundImage: foregroundImage);
+        expect(button.action, equals(action));
+        expect(button.backgroundColor, equals(backgroundColor));
+        expect(button.foregroundImage, equals(foregroundImage));
       });
     });
 
     group('assert when', () {
-      test('action, null', () {
-        expect(
-            () => StyledButton(action, null), throwsA(isA<AssertionError>()));
-      });
       test('null, backgroundColor', () {
-        expect(() => StyledButton(null, backgroundColor),
+        expect(() => StyledButton(null, backgroundColor: backgroundColor),
             throwsA(isA<AssertionError>()));
       });
-      test('null, null', () {
-        expect(() => StyledButton(null, null), throwsA(isA<AssertionError>()));
+      test('null', () {
+        expect(() => StyledButton(null), throwsA(isA<AssertionError>()));
       });
     });
   });

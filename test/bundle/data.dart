@@ -27,12 +27,16 @@ final allActions = <Action>[
   actionPlayVideo1,
 ];
 
-final styledButtonRedCloseMenu = StyledButton(actionCloseMenu, colorRed);
-final styledButtonGreenPlayAudio1 = StyledButton(actionPlayAudio1, colorGreen);
-final styledButtonBluePlayImage1 = StyledButton(actionPlayImage1, colorBlue);
-final styledButtonRedPlayVideo1 = StyledButton(actionPlayVideo1, colorRed);
+final styledButtonRedCloseMenu =
+    StyledButton(actionCloseMenu, backgroundColor: colorRed);
+final styledButtonGreenPlayAudio1 =
+    StyledButton(actionPlayAudio1, backgroundColor: colorGreen);
+final styledButtonBluePlayImage1 =
+    StyledButton(actionPlayImage1, backgroundColor: colorBlue);
+final styledButtonRedPlayVideo1 =
+    StyledButton(actionPlayVideo1, backgroundColor: colorRed);
 final styledButtonGreenShowMenuGrid1x1 =
-    StyledButton(actionShowMenuGrid1x1, colorGreen);
+    StyledButton(actionShowMenuGrid1x1, backgroundColor: colorGreen);
 
 final allButtons = <Button>[
   styledButtonRedCloseMenu,

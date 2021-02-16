@@ -168,28 +168,31 @@ void testEqualityStyledButton(
   group('StyledButton', () {
     group('==', () {
       test('action, backgroundColor', () {
-        final original = StyledButton(action, backgroundColor);
-        final clone = StyledButton(action, backgroundColor);
+        final original = StyledButton(action, backgroundColor: backgroundColor);
+        final clone = StyledButton(action, backgroundColor: backgroundColor);
         expect(clone, equals(original));
       });
     });
 
     group('!=', () {
       test('action', () {
-        final original = StyledButton(action, backgroundColor);
-        final other = StyledButton(otherAction, backgroundColor);
+        final original = StyledButton(action, backgroundColor: backgroundColor);
+        final other =
+            StyledButton(otherAction, backgroundColor: backgroundColor);
         expect(original, isNot(equals(other)));
       });
 
       test('backgroundColor', () {
-        final original = StyledButton(action, backgroundColor);
-        final other = StyledButton(action, otherBackgroundColor);
+        final original = StyledButton(action, backgroundColor: backgroundColor);
+        final other =
+            StyledButton(action, backgroundColor: otherBackgroundColor);
         expect(original, isNot(equals(other)));
       });
 
       test('action, backgroundColor', () {
-        final original = StyledButton(action, backgroundColor);
-        final other = StyledButton(otherAction, otherBackgroundColor);
+        final original = StyledButton(action, backgroundColor: backgroundColor);
+        final other =
+            StyledButton(otherAction, backgroundColor: otherBackgroundColor);
         expect(original, isNot(equals(other)));
       });
     });

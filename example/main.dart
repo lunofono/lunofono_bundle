@@ -26,7 +26,7 @@ final bundle = Bundle(
             ),
           ),
         ),
-        Colors.amber,
+        backgroundColor: Colors.amber,
       ),
     ],
   ),

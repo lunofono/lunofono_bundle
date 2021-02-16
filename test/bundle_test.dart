@@ -40,7 +40,7 @@ void testConstructors() {
 
   for (final action in allActions) {
     for (final color in allColors) {
-      testConstructorStyledButton(action, color);
+      testConstructorStyledButton(action, color, Uri.parse('some/image.png'));
     }
   }
 
