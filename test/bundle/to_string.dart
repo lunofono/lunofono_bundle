@@ -43,10 +43,10 @@ void testToString() {
         'config: FakeInheritableConfig)');
   });
 
-  test('ColoredButton', () {
-    final button = ColoredButton(FakeAction(), FakeColor());
+  test('StyledButton', () {
+    final button = StyledButton(FakeAction(), FakeColor());
     expect(button.toString(),
-        'ColoredButton(action: FakeAction, color: FakeColor)');
+        'StyledButton(action: FakeAction, color: FakeColor)');
   });
 
   test('ShowMenuAction', () {

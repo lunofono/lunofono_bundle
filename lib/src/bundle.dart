@@ -178,26 +178,26 @@ abstract class Button {
 }
 
 /// A [Button] represented by a [Color].
-class ColoredButton extends Button with EquatableMixin {
+class StyledButton extends Button with EquatableMixin {
   /// Button's color.
   final Color color;
 
   /// Creates a button represented by a [color].
-  const ColoredButton(Action action, this.color)
+  const StyledButton(Action action, this.color)
       : assert(color != null),
         super(action);
   @override
   List<Object> get props => [action, color];
 
-  /// Creates a new [ColoredButton] based on this one, overriding some values.
+  /// Creates a new [StyledButton] based on this one, overriding some values.
   ///
   /// Values not specified as arguments will be copied from this
-  /// [ColoredButton].
-  ColoredButton copyWith({
+  /// [StyledButton].
+  StyledButton copyWith({
     Action action,
     Color color,
   }) {
-    return ColoredButton(
+    return StyledButton(
       action ?? this.action,
       color ?? this.color,
     );

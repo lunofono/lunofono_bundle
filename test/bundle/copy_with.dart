@@ -156,8 +156,8 @@ void testCopyWithGridMenu(
   });
 }
 
-void testCopyWithColoredButton(
-  ColoredButton original,
+void testCopyWithStyledButton(
+  StyledButton original,
   Action newAction,
   Color newColor,
 ) {

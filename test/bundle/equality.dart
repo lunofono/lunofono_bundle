@@ -86,16 +86,16 @@ void testInequalityGridMenu() {
           rows: 1,
           columns: 2,
           buttons: [
-            coloredButtonRedCloseMenu,
-            coloredButtonGreenPlayAudio1,
+            styledButtonRedCloseMenu,
+            styledButtonGreenPlayAudio1,
           ],
         );
         final other = GridMenu(
           rows: 2,
           columns: 1,
           buttons: [
-            coloredButtonRedCloseMenu,
-            coloredButtonGreenPlayAudio1,
+            styledButtonRedCloseMenu,
+            styledButtonGreenPlayAudio1,
           ],
         );
         expect(original, isNot(equals(other)));
@@ -105,13 +105,13 @@ void testInequalityGridMenu() {
         final original = GridMenu(
           rows: 1,
           columns: 1,
-          buttons: [coloredButtonGreenPlayAudio1],
+          buttons: [styledButtonGreenPlayAudio1],
         );
         final other = GridMenu(
           rows: 1,
           columns: 1,
           buttons: [
-            coloredButtonRedCloseMenu,
+            styledButtonRedCloseMenu,
           ],
         );
         expect(original, isNot(equals(other)));
@@ -122,14 +122,14 @@ void testInequalityGridMenu() {
           rows: 1,
           columns: 1,
           buttons: [
-            coloredButtonRedCloseMenu,
+            styledButtonRedCloseMenu,
           ],
         );
         final other = GridMenu(
           rows: 1,
           columns: 1,
           buttons: [
-            coloredButtonRedCloseMenu,
+            styledButtonRedCloseMenu,
           ],
           config: inheritableConfig1o1r1,
         );
@@ -141,15 +141,15 @@ void testInequalityGridMenu() {
           rows: 1,
           columns: 2,
           buttons: [
-            coloredButtonRedCloseMenu,
-            coloredButtonGreenPlayAudio1,
+            styledButtonRedCloseMenu,
+            styledButtonGreenPlayAudio1,
           ],
         );
         final other = GridMenu(
           rows: 1,
           columns: 1,
           buttons: [
-            coloredButtonRedCloseMenu,
+            styledButtonRedCloseMenu,
           ],
           config: inheritableConfig1o1r1,
         );
@@ -159,37 +159,37 @@ void testInequalityGridMenu() {
   });
 }
 
-void testEqualityColoredButton(
+void testEqualityStyledButton(
   Action action,
   Color color,
   Action otherAction,
   Color otherColor,
 ) {
-  group('ColoredButton', () {
+  group('StyledButton', () {
     group('==', () {
       test('action, color', () {
-        final original = ColoredButton(action, color);
-        final clone = ColoredButton(action, color);
+        final original = StyledButton(action, color);
+        final clone = StyledButton(action, color);
         expect(clone, equals(original));
       });
     });
 
     group('!=', () {
       test('action', () {
-        final original = ColoredButton(action, color);
-        final other = ColoredButton(otherAction, color);
+        final original = StyledButton(action, color);
+        final other = StyledButton(otherAction, color);
         expect(original, isNot(equals(other)));
       });
 
       test('color', () {
-        final original = ColoredButton(action, color);
-        final other = ColoredButton(action, otherColor);
+        final original = StyledButton(action, color);
+        final other = StyledButton(action, otherColor);
         expect(original, isNot(equals(other)));
       });
 
       test('action, color', () {
-        final original = ColoredButton(action, color);
-        final other = ColoredButton(otherAction, otherColor);
+        final original = StyledButton(action, color);
+        final other = StyledButton(otherAction, otherColor);
         expect(original, isNot(equals(other)));
       });
     });
