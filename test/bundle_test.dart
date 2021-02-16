@@ -40,7 +40,7 @@ void testConstructors() {
 
   for (final action in allActions) {
     for (final color in allColors) {
-      testConstructorColoredButton(action, color);
+      testConstructorStyledButton(action, color, Uri.parse('some/image.png'));
     }
   }
 
@@ -66,7 +66,7 @@ void testEquality() {
   }
   testInequalityGridMenu();
 
-  testEqualityColoredButton(
+  testEqualityStyledButton(
     actionCloseMenu,
     colorRed,
     actionPlayAudio1,
@@ -93,8 +93,8 @@ void testCopyWith() {
 
   testCopyWithGridMenu(gridMenu5x1, gridMenu2x2, inheritableConfig1o1r1);
 
-  testCopyWithColoredButton(
-    coloredButtonRedCloseMenu,
+  testCopyWithStyledButton(
+    styledButtonRedCloseMenu,
     actionPlayAudio1,
     colorBlue,
   );

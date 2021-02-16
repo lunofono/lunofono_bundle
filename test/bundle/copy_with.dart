@@ -156,19 +156,19 @@ void testCopyWithGridMenu(
   });
 }
 
-void testCopyWithColoredButton(
-  ColoredButton original,
+void testCopyWithStyledButton(
+  StyledButton original,
   Action newAction,
-  Color newColor,
+  Color newBackgroundColor,
 ) {
   group('${original.runtimeType} success when', () {
     final originalAction = original.action;
-    final originalColor = original.color;
+    final originalColor = original.backgroundColor;
 
     void expectUnchangedOriginalNotSame(dynamic copy) {
       expect(copy, isNot(same(original)));
       expect(original.action, equals(originalAction));
-      expect(original.color, equals(originalColor));
+      expect(original.backgroundColor, equals(originalColor));
     }
 
     test('no arguments', () {
@@ -182,26 +182,27 @@ void testCopyWithColoredButton(
       final copy = original.copyWith(action: newAction);
       expectUnchangedOriginalNotSame(copy);
       // should not touch other members
-      expect(copy.color, equals(original.color));
+      expect(copy.backgroundColor, equals(original.backgroundColor));
       // should update copy's action
       expect(copy.action, equals(newAction));
     });
 
-    test('color: $newColor', () {
-      final copy = original.copyWith(color: newColor);
+    test('backgroundColor: $newBackgroundColor', () {
+      final copy = original.copyWith(backgroundColor: newBackgroundColor);
       expectUnchangedOriginalNotSame(copy);
       // should not touch other members
       expect(copy.action, equals(original.action));
       // should update copy's action
-      expect(copy.color, equals(newColor));
+      expect(copy.backgroundColor, equals(newBackgroundColor));
     });
 
-    test('action: $newAction, color: $newColor', () {
-      final copy = original.copyWith(action: newAction, color: newColor);
+    test('action: $newAction, backgroundColor: $newBackgroundColor', () {
+      final copy = original.copyWith(
+          action: newAction, backgroundColor: newBackgroundColor);
       expectUnchangedOriginalNotSame(copy);
       // should update copy's action
       expect(copy.action, equals(newAction));
-      expect(copy.color, equals(newColor));
+      expect(copy.backgroundColor, equals(newBackgroundColor));
     });
   });
 }

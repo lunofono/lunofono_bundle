@@ -10,7 +10,7 @@ final bundle = Bundle(
     rows: 1,
     columns: 1,
     buttons: [
-      ColoredButton(
+      StyledButton(
         PlayContentAction(
           MultiMedium(
             AudibleMultiMediumTrack(
@@ -26,7 +26,7 @@ final bundle = Bundle(
             ),
           ),
         ),
-        Colors.amber,
+        backgroundColor: Colors.amber,
       ),
     ],
   ),

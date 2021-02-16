@@ -177,29 +177,43 @@ abstract class Button {
   const Button(this.action) : assert(action != null);
 }
 
-/// A [Button] represented by a [Color].
-class ColoredButton extends Button with EquatableMixin {
-  /// Button's color.
-  final Color color;
+/// A [Button] with a customizable style.
+class StyledButton extends Button with EquatableMixin {
+  /// Color to display as this button's background.
+  ///
+  /// If null, the player can automatically choose one or a global default might
+  /// be used.
+  final Color backgroundColor;
 
-  /// Creates a button represented by a [color].
-  const ColoredButton(Action action, this.color)
-      : assert(color != null),
-        super(action);
+  /// The image to display in this button foreground.
+  ///
+  /// If null, no foreground image is displayed.
+  final Uri foregroundImage;
+
+  /// Creates a button represented by a [backgroundColor].
+  const StyledButton(Action action,
+      {this.backgroundColor, this.foregroundImage})
+      : super(action);
   @override
-  List<Object> get props => [action, color];
+  List<Object> get props => [action, backgroundColor];
 
-  /// Creates a new [ColoredButton] based on this one, overriding some values.
+  /// Creates a new [StyledButton] based on this one, overriding some values.
   ///
   /// Values not specified as arguments will be copied from this
-  /// [ColoredButton].
-  ColoredButton copyWith({
+  /// [StyledButton].
+  ///
+  /// Note that this won't work to make a copy with some values set to null. If
+  /// you need to do that you'll have to do the copy manually by calling the
+  /// constructor explicitly.
+  StyledButton copyWith({
     Action action,
-    Color color,
+    Color backgroundColor,
+    Uri foregroundImage,
   }) {
-    return ColoredButton(
+    return StyledButton(
       action ?? this.action,
-      color ?? this.color,
+      backgroundColor: backgroundColor ?? this.backgroundColor,
+      foregroundImage: foregroundImage ?? this.foregroundImage,
     );
   }
 
@@ -208,7 +222,8 @@ class ColoredButton extends Button with EquatableMixin {
   String toString() {
     return '$runtimeType('
         'action: $action, '
-        'color: $color'
+        'backgroundColor: $backgroundColor, '
+        'foregroundImage: $foregroundImage'
         ')';
   }
 }

@@ -86,16 +86,16 @@ void testInequalityGridMenu() {
           rows: 1,
           columns: 2,
           buttons: [
-            coloredButtonRedCloseMenu,
-            coloredButtonGreenPlayAudio1,
+            styledButtonRedCloseMenu,
+            styledButtonGreenPlayAudio1,
           ],
         );
         final other = GridMenu(
           rows: 2,
           columns: 1,
           buttons: [
-            coloredButtonRedCloseMenu,
-            coloredButtonGreenPlayAudio1,
+            styledButtonRedCloseMenu,
+            styledButtonGreenPlayAudio1,
           ],
         );
         expect(original, isNot(equals(other)));
@@ -105,13 +105,13 @@ void testInequalityGridMenu() {
         final original = GridMenu(
           rows: 1,
           columns: 1,
-          buttons: [coloredButtonGreenPlayAudio1],
+          buttons: [styledButtonGreenPlayAudio1],
         );
         final other = GridMenu(
           rows: 1,
           columns: 1,
           buttons: [
-            coloredButtonRedCloseMenu,
+            styledButtonRedCloseMenu,
           ],
         );
         expect(original, isNot(equals(other)));
@@ -122,14 +122,14 @@ void testInequalityGridMenu() {
           rows: 1,
           columns: 1,
           buttons: [
-            coloredButtonRedCloseMenu,
+            styledButtonRedCloseMenu,
           ],
         );
         final other = GridMenu(
           rows: 1,
           columns: 1,
           buttons: [
-            coloredButtonRedCloseMenu,
+            styledButtonRedCloseMenu,
           ],
           config: inheritableConfig1o1r1,
         );
@@ -141,15 +141,15 @@ void testInequalityGridMenu() {
           rows: 1,
           columns: 2,
           buttons: [
-            coloredButtonRedCloseMenu,
-            coloredButtonGreenPlayAudio1,
+            styledButtonRedCloseMenu,
+            styledButtonGreenPlayAudio1,
           ],
         );
         final other = GridMenu(
           rows: 1,
           columns: 1,
           buttons: [
-            coloredButtonRedCloseMenu,
+            styledButtonRedCloseMenu,
           ],
           config: inheritableConfig1o1r1,
         );
@@ -159,37 +159,40 @@ void testInequalityGridMenu() {
   });
 }
 
-void testEqualityColoredButton(
+void testEqualityStyledButton(
   Action action,
-  Color color,
+  Color backgroundColor,
   Action otherAction,
-  Color otherColor,
+  Color otherBackgroundColor,
 ) {
-  group('ColoredButton', () {
+  group('StyledButton', () {
     group('==', () {
-      test('action, color', () {
-        final original = ColoredButton(action, color);
-        final clone = ColoredButton(action, color);
+      test('action, backgroundColor', () {
+        final original = StyledButton(action, backgroundColor: backgroundColor);
+        final clone = StyledButton(action, backgroundColor: backgroundColor);
         expect(clone, equals(original));
       });
     });
 
     group('!=', () {
       test('action', () {
-        final original = ColoredButton(action, color);
-        final other = ColoredButton(otherAction, color);
+        final original = StyledButton(action, backgroundColor: backgroundColor);
+        final other =
+            StyledButton(otherAction, backgroundColor: backgroundColor);
         expect(original, isNot(equals(other)));
       });
 
-      test('color', () {
-        final original = ColoredButton(action, color);
-        final other = ColoredButton(action, otherColor);
+      test('backgroundColor', () {
+        final original = StyledButton(action, backgroundColor: backgroundColor);
+        final other =
+            StyledButton(action, backgroundColor: otherBackgroundColor);
         expect(original, isNot(equals(other)));
       });
 
-      test('action, color', () {
-        final original = ColoredButton(action, color);
-        final other = ColoredButton(otherAction, otherColor);
+      test('action, backgroundColor', () {
+        final original = StyledButton(action, backgroundColor: backgroundColor);
+        final other =
+            StyledButton(otherAction, backgroundColor: otherBackgroundColor);
         expect(original, isNot(equals(other)));
       });
     });

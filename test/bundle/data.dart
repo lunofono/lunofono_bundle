@@ -27,27 +27,30 @@ final allActions = <Action>[
   actionPlayVideo1,
 ];
 
-final coloredButtonRedCloseMenu = ColoredButton(actionCloseMenu, colorRed);
-final coloredButtonGreenPlayAudio1 =
-    ColoredButton(actionPlayAudio1, colorGreen);
-final coloredButtonBluePlayImage1 = ColoredButton(actionPlayImage1, colorBlue);
-final coloredButtonRedPlayVideo1 = ColoredButton(actionPlayVideo1, colorRed);
-final coloredButtonGreenShowMenuGrid1x1 =
-    ColoredButton(actionShowMenuGrid1x1, colorGreen);
+final styledButtonRedCloseMenu =
+    StyledButton(actionCloseMenu, backgroundColor: colorRed);
+final styledButtonGreenPlayAudio1 =
+    StyledButton(actionPlayAudio1, backgroundColor: colorGreen);
+final styledButtonBluePlayImage1 =
+    StyledButton(actionPlayImage1, backgroundColor: colorBlue);
+final styledButtonRedPlayVideo1 =
+    StyledButton(actionPlayVideo1, backgroundColor: colorRed);
+final styledButtonGreenShowMenuGrid1x1 =
+    StyledButton(actionShowMenuGrid1x1, backgroundColor: colorGreen);
 
 final allButtons = <Button>[
-  coloredButtonRedCloseMenu,
-  coloredButtonGreenPlayAudio1,
-  coloredButtonBluePlayImage1,
-  coloredButtonRedPlayVideo1,
-  coloredButtonGreenShowMenuGrid1x1,
+  styledButtonRedCloseMenu,
+  styledButtonGreenPlayAudio1,
+  styledButtonBluePlayImage1,
+  styledButtonRedPlayVideo1,
+  styledButtonGreenShowMenuGrid1x1,
 ];
 
 final gridMenu1x1 = GridMenu(
   rows: 1,
   columns: 1,
   buttons: <Button>[
-    coloredButtonRedCloseMenu,
+    styledButtonRedCloseMenu,
   ],
 );
 
@@ -55,8 +58,8 @@ final gridMenu1x2 = GridMenu(
   rows: 1,
   columns: 2,
   buttons: <Button>[
-    coloredButtonRedCloseMenu,
-    coloredButtonGreenPlayAudio1,
+    styledButtonRedCloseMenu,
+    styledButtonGreenPlayAudio1,
   ],
   config: null,
 );
@@ -65,8 +68,8 @@ final gridMenu2x1 = GridMenu(
   rows: 2,
   columns: 1,
   buttons: <Button>[
-    coloredButtonBluePlayImage1,
-    coloredButtonRedPlayVideo1,
+    styledButtonBluePlayImage1,
+    styledButtonRedPlayVideo1,
   ],
   config: inheritedConfig,
 );
@@ -75,10 +78,10 @@ final gridMenu2x2 = GridMenu(
   rows: 2,
   columns: 2,
   buttons: <Button>[
-    coloredButtonRedCloseMenu,
-    coloredButtonGreenPlayAudio1,
-    coloredButtonBluePlayImage1,
-    coloredButtonRedPlayVideo1,
+    styledButtonRedCloseMenu,
+    styledButtonGreenPlayAudio1,
+    styledButtonBluePlayImage1,
+    styledButtonRedPlayVideo1,
   ],
   config: inheritableConfig1o1r1,
 );
@@ -87,10 +90,10 @@ final gridMenu1x4 = GridMenu(
   rows: 1,
   columns: 4,
   buttons: <Button>[
-    coloredButtonRedCloseMenu,
-    coloredButtonGreenPlayAudio1,
-    coloredButtonBluePlayImage1,
-    coloredButtonRedPlayVideo1,
+    styledButtonRedCloseMenu,
+    styledButtonGreenPlayAudio1,
+    styledButtonBluePlayImage1,
+    styledButtonRedPlayVideo1,
   ],
   config: inheritableConfig2o2r2,
 );
@@ -99,11 +102,11 @@ final gridMenu5x1 = GridMenu(
   rows: 5,
   columns: 1,
   buttons: <Button>[
-    coloredButtonRedCloseMenu,
-    coloredButtonGreenPlayAudio1,
-    coloredButtonBluePlayImage1,
-    coloredButtonRedPlayVideo1,
-    coloredButtonGreenShowMenuGrid1x1,
+    styledButtonRedCloseMenu,
+    styledButtonGreenPlayAudio1,
+    styledButtonBluePlayImage1,
+    styledButtonRedPlayVideo1,
+    styledButtonGreenShowMenuGrid1x1,
   ],
 );
 
