@@ -161,35 +161,35 @@ void testInequalityGridMenu() {
 
 void testEqualityStyledButton(
   Action action,
-  Color color,
+  Color backgroundColor,
   Action otherAction,
-  Color otherColor,
+  Color otherBackgroundColor,
 ) {
   group('StyledButton', () {
     group('==', () {
-      test('action, color', () {
-        final original = StyledButton(action, color);
-        final clone = StyledButton(action, color);
+      test('action, backgroundColor', () {
+        final original = StyledButton(action, backgroundColor);
+        final clone = StyledButton(action, backgroundColor);
         expect(clone, equals(original));
       });
     });
 
     group('!=', () {
       test('action', () {
-        final original = StyledButton(action, color);
-        final other = StyledButton(otherAction, color);
+        final original = StyledButton(action, backgroundColor);
+        final other = StyledButton(otherAction, backgroundColor);
         expect(original, isNot(equals(other)));
       });
 
-      test('color', () {
-        final original = StyledButton(action, color);
-        final other = StyledButton(action, otherColor);
+      test('backgroundColor', () {
+        final original = StyledButton(action, backgroundColor);
+        final other = StyledButton(action, otherBackgroundColor);
         expect(original, isNot(equals(other)));
       });
 
-      test('action, color', () {
-        final original = StyledButton(action, color);
-        final other = StyledButton(otherAction, otherColor);
+      test('action, backgroundColor', () {
+        final original = StyledButton(action, backgroundColor);
+        final other = StyledButton(otherAction, otherBackgroundColor);
         expect(original, isNot(equals(other)));
       });
     });

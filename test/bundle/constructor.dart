@@ -165,14 +165,14 @@ void testConstructorGridMenu(
 
 void testConstructorStyledButton(
   Action action,
-  Color color,
+  Color backgroundColor,
 ) {
   group('StyledButton', () {
     group('success when', () {
-      test('action, color', () {
-        final button = StyledButton(action, color);
+      test('action, backgroundColor', () {
+        final button = StyledButton(action, backgroundColor);
         expect(button.action, equals(action));
-        expect(button.color, equals(color));
+        expect(button.backgroundColor, equals(backgroundColor));
       });
     });
 
@@ -181,8 +181,9 @@ void testConstructorStyledButton(
         expect(
             () => StyledButton(action, null), throwsA(isA<AssertionError>()));
       });
-      test('null, color', () {
-        expect(() => StyledButton(null, color), throwsA(isA<AssertionError>()));
+      test('null, backgroundColor', () {
+        expect(() => StyledButton(null, backgroundColor),
+            throwsA(isA<AssertionError>()));
       });
       test('null, null', () {
         expect(() => StyledButton(null, null), throwsA(isA<AssertionError>()));

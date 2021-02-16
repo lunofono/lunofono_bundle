@@ -79,8 +79,9 @@ void testGridMenu() {
         for (var j = 0; j < menu.columns; j++) {
           final button = menu.buttonAt(i, j) as StyledButton;
           final expectedColor = Color(9000 + 100 * i + 90 + j);
-          expect(button.color, equals(expectedColor),
-              reason: ' Details: row=$i, col=$j, color=${button.color.value}, '
+          expect(button.backgroundColor, equals(expectedColor),
+              reason: ' Details: row=$i, col=$j, '
+                  'backgroundColor=${button.backgroundColor.value}, '
                   'expected=${expectedColor.value}');
         }
       }

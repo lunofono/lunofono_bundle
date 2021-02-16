@@ -179,15 +179,15 @@ abstract class Button {
 
 /// A [Button] represented by a [Color].
 class StyledButton extends Button with EquatableMixin {
-  /// Button's color.
-  final Color color;
+  /// This button's background color.
+  final Color backgroundColor;
 
-  /// Creates a button represented by a [color].
-  const StyledButton(Action action, this.color)
-      : assert(color != null),
+  /// Creates a button represented by a [backgroundColor].
+  const StyledButton(Action action, this.backgroundColor)
+      : assert(backgroundColor != null),
         super(action);
   @override
-  List<Object> get props => [action, color];
+  List<Object> get props => [action, backgroundColor];
 
   /// Creates a new [StyledButton] based on this one, overriding some values.
   ///
@@ -195,11 +195,11 @@ class StyledButton extends Button with EquatableMixin {
   /// [StyledButton].
   StyledButton copyWith({
     Action action,
-    Color color,
+    Color backgroundColor,
   }) {
     return StyledButton(
       action ?? this.action,
-      color ?? this.color,
+      backgroundColor ?? this.backgroundColor,
     );
   }
 
@@ -208,7 +208,7 @@ class StyledButton extends Button with EquatableMixin {
   String toString() {
     return '$runtimeType('
         'action: $action, '
-        'color: $color'
+        'backgroundColor: $backgroundColor'
         ')';
   }
 }
