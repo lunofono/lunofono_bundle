@@ -247,17 +247,10 @@ void testConstructorPlayContentAction(
       test('content', () {
         final action = PlayContentAction(content);
         expect(action.content, equals(content));
-        expect(action.shouldLoop, equals(false));
       });
-      test('content, loop: false', () {
-        final action = PlayContentAction(content, loop: false);
+      test('content', () {
+        final action = PlayContentAction(content);
         expect(action.content, equals(content));
-        expect(action.shouldLoop, equals(false));
-      });
-      test('content, loop: true', () {
-        final action = PlayContentAction(content, loop: true);
-        expect(action.content, equals(content));
-        expect(action.shouldLoop, equals(true));
       });
     });
 

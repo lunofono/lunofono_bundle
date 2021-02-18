@@ -230,13 +230,8 @@ void testEqualityPlayContentAction(Playable content, Playable otherContent) {
       test('content', () {
         expect(PlayContentAction(content), equals(PlayContentAction(content)));
       });
-      test('content, loop: false', () {
-        expect(PlayContentAction(content, loop: false),
-            equals(PlayContentAction(content, loop: false)));
-      });
-      test('content, loop: true', () {
-        expect(PlayContentAction(content, loop: true),
-            equals(PlayContentAction(content, loop: true)));
+      test('content', () {
+        expect(PlayContentAction(content), equals(PlayContentAction(content)));
       });
     });
     group('!=', () {

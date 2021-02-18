@@ -16,8 +16,8 @@ const allColors = <Color>[
 final actionCloseMenu = CloseMenuAction();
 final actionShowMenuGrid1x1 = ShowMenuAction(gridMenu1x1);
 final actionPlayAudio1 = PlayContentAction(audio1);
-final actionPlayImage1 = PlayContentAction(image1, loop: true);
-final actionPlayVideo1 = PlayContentAction(video1, loop: false);
+final actionPlayImage1 = PlayContentAction(image1);
+final actionPlayVideo1 = PlayContentAction(video1);
 
 final allActions = <Action>[
   actionCloseMenu,
