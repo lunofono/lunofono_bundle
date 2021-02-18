@@ -228,24 +228,22 @@ class StyledButton extends Button with EquatableMixin {
   }
 }
 
-/// A [Button] with a customizable style.
+/// A [Button] that shows an image.
 class ImageButton extends Button with EquatableMixin {
-  /// The image to display in this button foreground.
-  ///
-  /// If null, no foreground image is displayed.
+  /// The image to display in this button.
   final Uri imageUri;
 
-  /// Creates a button represented by a [backgroundColor].
+  /// Creates a button represented by [imageUri].
   const ImageButton(Action action, this.imageUri)
       : assert(imageUri != null),
         super(action);
   @override
   List<Object> get props => [action, imageUri];
 
-  /// Creates a new [StyledButton] based on this one, overriding some values.
+  /// Creates a new [ImageButton] based on this one, overriding some values.
   ///
   /// Values not specified as arguments will be copied from this
-  /// [StyledButton].
+  /// [ImageButton].
   ///
   /// Note that this won't work to make a copy with some values set to null. If
   /// you need to do that you'll have to do the copy manually by calling the
@@ -334,19 +332,12 @@ class PlayContentAction extends Action with EquatableMixin {
   /// [Playable] content to be played.
   final Playable content;
 
-  /// True if the [content] should restart when it reaches the end.
-  final bool shouldLoop;
-
   /// Creates a new [PlayContentAction].
   ///
-  /// The action will play the [content] when activated.  If [loop] is true, the
-  /// play list will restart after the [content] was completely reproduced
-  /// (default to false when null).
-  const PlayContentAction(this.content, {bool loop})
-      : assert(content != null),
-        shouldLoop = loop ?? false;
+  /// The action will play the [content] when activated.
+  const PlayContentAction(this.content) : assert(content != null);
   @override
-  List<Object> get props => [content, shouldLoop];
+  List<Object> get props => [content];
 
   /// Creates a new [PlayContentAction] based on this one, overriding some values.
   ///
@@ -354,11 +345,9 @@ class PlayContentAction extends Action with EquatableMixin {
   /// [PlayContentAction].
   PlayContentAction copyWith({
     Playable content,
-    bool shouldLoop,
   }) {
     return PlayContentAction(
       content ?? this.content,
-      loop: shouldLoop ?? this.shouldLoop,
     );
   }
 
@@ -366,8 +355,7 @@ class PlayContentAction extends Action with EquatableMixin {
   @override
   String toString() {
     return '$runtimeType('
-        'content: $content, '
-        'shouldLoop: $shouldLoop'
+        'content: $content'
         ')';
   }
 }

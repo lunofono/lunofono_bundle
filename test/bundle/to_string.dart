@@ -62,10 +62,7 @@ void testToString() {
   });
 
   test('PlayContentAction', () {
-    final action = PlayContentAction(FakePlayable(), loop: true);
-    expect(
-        action.toString(),
-        'PlayContentAction(content: FakePlayable, '
-        'shouldLoop: true)');
+    final action = PlayContentAction(FakePlayable());
+    expect(action.toString(), 'PlayContentAction(content: FakePlayable)');
   });
 }
