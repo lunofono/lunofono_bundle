@@ -195,7 +195,7 @@ class StyledButton extends Button with EquatableMixin {
       {this.backgroundColor, this.foregroundImage})
       : super(action);
   @override
-  List<Object> get props => [action, backgroundColor];
+  List<Object> get props => [action, backgroundColor, foregroundImage];
 
   /// Creates a new [StyledButton] based on this one, overriding some values.
   ///
