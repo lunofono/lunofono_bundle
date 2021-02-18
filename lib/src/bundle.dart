@@ -228,6 +228,48 @@ class StyledButton extends Button with EquatableMixin {
   }
 }
 
+/// A [Button] with a customizable style.
+class ImageButton extends Button with EquatableMixin {
+  /// The image to display in this button foreground.
+  ///
+  /// If null, no foreground image is displayed.
+  final Uri imageUri;
+
+  /// Creates a button represented by a [backgroundColor].
+  const ImageButton(Action action, this.imageUri)
+      : assert(imageUri != null),
+        super(action);
+  @override
+  List<Object> get props => [action, imageUri];
+
+  /// Creates a new [StyledButton] based on this one, overriding some values.
+  ///
+  /// Values not specified as arguments will be copied from this
+  /// [StyledButton].
+  ///
+  /// Note that this won't work to make a copy with some values set to null. If
+  /// you need to do that you'll have to do the copy manually by calling the
+  /// constructor explicitly.
+  ImageButton copyWith({
+    Action action,
+    Uri imageUri,
+  }) {
+    return ImageButton(
+      action ?? this.action,
+      imageUri ?? this.imageUri,
+    );
+  }
+
+  /// Returns a string representation of this object.
+  @override
+  String toString() {
+    return '$runtimeType('
+        'action: $action, '
+        'imageUri: $imageUri'
+        ')';
+  }
+}
+
 /// An [Action] that shows a [Menu] when a [Button] is pressed.
 class ShowMenuAction extends Action with EquatableMixin {
   /// [Menu] to be shown by this action.
