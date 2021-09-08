@@ -61,8 +61,7 @@ abstract class Medium implements Playable {
   ///
   /// If [maxDuration] is set to an [UnlimitedDuration] (the default when null),
   /// this [Medium] will play for as long as it lasts.
-  const Medium({Duration maxDuration})
-      : maxDuration = maxDuration ?? const UnlimitedDuration();
+  const Medium({this.maxDuration = const UnlimitedDuration()});
 }
 
 /// A [Medium] with a single resource.
@@ -82,13 +81,10 @@ abstract class SingleMedium extends Medium with EquatableMixin {
   /// Creates a [SingleMedium] pointing to a [resource].
   const SingleMedium(
     this.resource, {
-    Duration maxDuration,
-  })  : assert(resource != null),
-        super(
-          maxDuration: maxDuration,
-        );
+    Duration maxDuration = const UnlimitedDuration(),
+  }) : super(maxDuration: maxDuration);
   @override
-  List<Object> get props => [resource, maxDuration];
+  List<Object?> get props => [resource, maxDuration];
 
   /// Returns a string representation of this object.
   @override
@@ -105,7 +101,7 @@ class Audio extends SingleMedium implements Audible {
   /// Creates a single [Audio] [Medium].
   const Audio(
     Uri resource, {
-    Duration maxDuration,
+    Duration maxDuration = const UnlimitedDuration(),
   }) : super(
           resource,
           maxDuration: maxDuration,
@@ -114,7 +110,7 @@ class Audio extends SingleMedium implements Audible {
   /// Creates a new [Audio] based on this one, overriding some values.
   ///
   /// Values not specified as arguments will be copied from this [Audio].
-  Audio copyWith({Uri resource, Duration maxDuration}) {
+  Audio copyWith({Uri? resource, Duration? maxDuration}) {
     return Audio(
       resource ?? this.resource,
       maxDuration: maxDuration ?? this.maxDuration,
@@ -127,7 +123,7 @@ class Image extends SingleMedium implements Visualizable {
   /// Creates a single [Image] [Medium].
   const Image(
     Uri resource, {
-    Duration maxDuration,
+    Duration maxDuration = const UnlimitedDuration(),
   }) : super(
           resource,
           maxDuration: maxDuration,
@@ -136,7 +132,7 @@ class Image extends SingleMedium implements Visualizable {
   /// Creates a new [Image] based on this one, overriding some values.
   ///
   /// Values not specified as arguments will be copied from this [Image].
-  Image copyWith({Uri resource, Duration maxDuration}) {
+  Image copyWith({Uri? resource, Duration? maxDuration}) {
     return Image(
       resource ?? this.resource,
       maxDuration: maxDuration ?? this.maxDuration,
@@ -149,7 +145,7 @@ class Video extends SingleMedium implements Visualizable, Audible {
   /// Creates a single [Video] [Medium].
   const Video(
     Uri resource, {
-    Duration maxDuration,
+    Duration maxDuration = const UnlimitedDuration(),
   }) : super(
           resource,
           maxDuration: maxDuration,
@@ -158,7 +154,7 @@ class Video extends SingleMedium implements Visualizable, Audible {
   /// Creates a new [Video] based on this one, overriding some values.
   ///
   /// Values not specified as arguments will be copied from this [Video].
-  Video copyWith({Uri resource, Duration maxDuration}) {
+  Video copyWith({Uri? resource, Duration? maxDuration}) {
     return Video(
       resource ?? this.resource,
       maxDuration: maxDuration ?? this.maxDuration,
@@ -191,18 +187,17 @@ class AudibleMultiMediumTrack with EquatableMixin implements MultiMediumTrack {
   /// The track consists of a list of [media] that will be played sequentially.
   const AudibleMultiMediumTrack(
     List<Audible> media,
-  )   : assert(media != null),
-        assert(media.length != 0), // Can't use .isNotEmpty because of const
+  )   : assert(media.length != 0), // Can't use .isNotEmpty because of const
         _media = media;
   @override
-  List<Object> get props => [media];
+  List<Object?> get props => [media];
 
   /// Creates a new [MultiMediumTrack] based on this one.
   ///
   /// Values not specified as arguments will be copied from this
   /// [MultiMediumTrack].
   AudibleMultiMediumTrack copyWith({
-    List<Audible> media,
+    List<Audible>? media,
   }) {
     return AudibleMultiMediumTrack(
       media ?? _media,
@@ -237,18 +232,17 @@ class VisualizableMultiMediumTrack
   /// The track consists of a list of [media] that will be played sequentially.
   const VisualizableMultiMediumTrack(
     List<Visualizable> media,
-  )   : assert(media != null),
-        assert(media.length != 0), // Can't use .isNotEmpty because of const
+  )   : assert(media.length != 0), // Can't use .isNotEmpty because of const
         _media = media;
   @override
-  List<Object> get props => [media];
+  List<Object?> get props => [media];
 
   /// Creates a new [MultiMediumTrack] based on this one.
   ///
   /// Values not specified as arguments will be copied from this
   /// [MultiMediumTrack].
   VisualizableMultiMediumTrack copyWith({
-    List<Visualizable> media,
+    List<Visualizable>? media,
   }) {
     return VisualizableMultiMediumTrack(
       media ?? _media,
@@ -289,11 +283,11 @@ class AudibleBackgroundMultiMediumTrack extends AudibleMultiMediumTrack
   /// when null).
   const AudibleBackgroundMultiMediumTrack(
     List<Audible> media, {
-    bool loop,
-  })  : _isLooping = loop ?? false,
+    bool loop = false,
+  })  : _isLooping = loop,
         super(media);
   @override
-  List<Object> get props => super.props + [isLooping];
+  List<Object?> get props => super.props + [isLooping];
 
   /// Creates a new [AudibleBackgroundMultiMediumTrack] based on this one.
   ///
@@ -301,8 +295,8 @@ class AudibleBackgroundMultiMediumTrack extends AudibleMultiMediumTrack
   /// [AudibleBackgroundMultiMediumTrack].
   @override
   AudibleBackgroundMultiMediumTrack copyWith({
-    List<Audible> media,
-    bool isLooping,
+    List<Audible>? media,
+    bool? isLooping,
   }) {
     return AudibleBackgroundMultiMediumTrack(
       media ?? _media,
@@ -337,11 +331,11 @@ class VisualizableBackgroundMultiMediumTrack
   /// when null).
   const VisualizableBackgroundMultiMediumTrack(
     List<Visualizable> media, {
-    bool loop,
-  })  : _isLooping = loop ?? false,
+    bool loop = false,
+  })  : _isLooping = loop,
         super(media);
   @override
-  List<Object> get props => super.props + [isLooping];
+  List<Object?> get props => super.props + [isLooping];
 
   /// Creates a new [VisualizableBackgroundMultiMediumTrack] based on this one.
   ///
@@ -349,8 +343,8 @@ class VisualizableBackgroundMultiMediumTrack
   /// [VisualizableBackgroundMultiMediumTrack].
   @override
   VisualizableBackgroundMultiMediumTrack copyWith({
-    List<Visualizable> media,
-    bool isLooping,
+    List<Visualizable>? media,
+    bool? isLooping,
   }) {
     return VisualizableBackgroundMultiMediumTrack(
       media ?? _media,
@@ -442,22 +436,17 @@ class MultiMedium extends Medium with EquatableMixin {
   /// The [mainTrack] can't be a [BackgroundMultiMediumTrack].
   const MultiMedium(
     this.mainTrack, {
-    BackgroundMultiMediumTrack backgroundTrack,
-    Duration maxDuration,
-  })  : assert(mainTrack != null),
-        assert(mainTrack is! BackgroundMultiMediumTrack),
-        assert(backgroundTrack == null ||
-            backgroundTrack is NoTrack ||
+    this.backgroundTrack = const NoTrack(),
+    Duration maxDuration = const UnlimitedDuration(),
+  })  : assert(mainTrack is! BackgroundMultiMediumTrack),
+        assert(backgroundTrack is NoTrack ||
             (mainTrack is AudibleMultiMediumTrack &&
                     backgroundTrack is VisualizableBackgroundMultiMediumTrack ||
                 mainTrack is VisualizableMultiMediumTrack &&
                     backgroundTrack is AudibleBackgroundMultiMediumTrack)),
-        backgroundTrack = backgroundTrack ?? const NoTrack(),
-        super(
-          maxDuration: maxDuration,
-        );
+        super(maxDuration: maxDuration);
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         mainTrack,
         backgroundTrack,
         maxDuration,
@@ -470,8 +459,7 @@ class MultiMedium extends Medium with EquatableMixin {
   /// visualizable if the [medium] is [Visualizable] (even if it is [Audible]
   /// too. If it is [Audible] *only*, then the [mainTrack] is audible.
   MultiMedium.fromSingleMedium(SingleMedium medium)
-      : assert(medium != null),
-        assert(medium is Audible || medium is Visualizable),
+      : assert(medium is Audible || medium is Visualizable),
         mainTrack = (medium is Visualizable
             ? VisualizableMultiMediumTrack([medium as Visualizable])
             : AudibleMultiMediumTrack([medium as Audible])) as MultiMediumTrack,
@@ -482,9 +470,9 @@ class MultiMedium extends Medium with EquatableMixin {
   ///
   /// Values not specified as arguments will be copied from this [MultiMedium].
   MultiMedium copyWith({
-    MultiMediumTrack mainTrack,
-    BackgroundMultiMediumTrack backgroundTrack,
-    Duration maxDuration,
+    MultiMediumTrack? mainTrack,
+    BackgroundMultiMediumTrack? backgroundTrack,
+    Duration? maxDuration,
   }) {
     return MultiMedium(
       mainTrack ?? this.mainTrack,
@@ -522,19 +510,17 @@ class Playlist with EquatableMixin implements Playable {
   /// The [media] list must not be empty.
   const Playlist(
     this.media, {
-    InheritableConfig config,
-  })  : assert(media != null),
-        assert(media.length != 0), // Can't use .isNotEmpty because of const
-        config = config ?? inheritedConfig;
+    this.config = inheritedConfig,
+  }) : assert(media.length != 0); // Can't use .isNotEmpty because of const
   @override
-  List<Object> get props => [media, config];
+  List<Object?> get props => [media, config];
 
   /// Creates a new [Playlist] based on this one, overriding some values.
   ///
   /// Values not specified as arguments will be copied from this [Playlist].
   Playlist copyWith({
-    List<Medium> media,
-    InheritableConfig config,
+    List<Medium>? media,
+    InheritableConfig? config,
   }) {
     return Playlist(
       media ?? this.media,

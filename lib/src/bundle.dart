@@ -1,7 +1,6 @@
 import 'dart:ui' show Color;
 
 import 'package:equatable/equatable.dart' show EquatableMixin;
-import 'package:meta/meta.dart' show required;
 
 import 'config.dart';
 import 'media.dart';
@@ -34,18 +33,17 @@ class Bundle with EquatableMixin {
   /// Creates a content bundle.
   const Bundle(
     this.rootMenu, {
-    InheritableConfig config,
-  })  : config = config ?? inheritedConfig,
-        assert(rootMenu != null);
+    this.config = inheritedConfig,
+  });
   @override
-  List<Object> get props => [rootMenu, config];
+  List<Object?> get props => [rootMenu, config];
 
   /// Creates a new [Bundle] based on this one, overriding some values.
   ///
   /// Values not specified as arguments will be copied from this [Bundle].
   Bundle copyWith({
-    Menu rootMenu,
-    InheritableConfig config,
+    Menu? rootMenu,
+    InheritableConfig? config,
   }) {
     return Bundle(
       rootMenu ?? this.rootMenu,
@@ -82,8 +80,8 @@ abstract class Menu {
   /// If [config] is null (the default), [inheritedConfig] is used, and all the
   /// configuration is inherited from the parent [Menu] or [Bundle].
   const Menu({
-    InheritableConfig config,
-  }) : config = config ?? inheritedConfig;
+    this.config = inheritedConfig,
+  });
 }
 
 /// A [Menu] consisting in a grid or buttons.
@@ -120,28 +118,25 @@ class GridMenu extends Menu with EquatableMixin {
   /// The list of [buttons] must not be empty and have `rows * columns`
   /// buttons (where both [rows] and [columns] must be greater than 0).
   const GridMenu({
-    @required this.rows,
-    @required this.columns,
-    @required this.buttons,
-    InheritableConfig config,
-  })  : assert(rows != null),
-        assert(rows > 0),
-        assert(columns != null),
+    required this.rows,
+    required this.columns,
+    required this.buttons,
+    InheritableConfig config = inheritedConfig,
+  })  : assert(rows > 0),
         assert(columns > 0),
-        assert(buttons != null),
         assert(buttons.length == rows * columns),
         super(config: config);
   @override
-  List<Object> get props => [rows, columns, buttons, config];
+  List<Object?> get props => [rows, columns, buttons, config];
 
   /// Creates a new [GridMenu] based on this one, overriding some values.
   ///
   /// Values not specified as arguments will be copied from this [GridMenu].
   GridMenu copyWith({
-    int rows,
-    int columns,
-    List<Button> buttons,
-    InheritableConfig config,
+    int? rows,
+    int? columns,
+    List<Button>? buttons,
+    InheritableConfig? config,
   }) {
     return GridMenu(
       rows: rows ?? this.rows,
@@ -174,7 +169,7 @@ abstract class Button {
   final Action action;
 
   /// Creates a new [Button] with an associated [Action].
-  const Button(this.action) : assert(action != null);
+  const Button(this.action);
 }
 
 /// A [Button] with a customizable style.
@@ -183,19 +178,19 @@ class StyledButton extends Button with EquatableMixin {
   ///
   /// If null, the player can automatically choose one or a global default might
   /// be used.
-  final Color backgroundColor;
+  final Color? backgroundColor;
 
   /// The image to display in this button foreground.
   ///
   /// If null, no foreground image is displayed.
-  final Uri foregroundImage;
+  final Uri? foregroundImage;
 
   /// Creates a button represented by a [backgroundColor].
   const StyledButton(Action action,
       {this.backgroundColor, this.foregroundImage})
       : super(action);
   @override
-  List<Object> get props => [action, backgroundColor, foregroundImage];
+  List<Object?> get props => [action, backgroundColor, foregroundImage];
 
   /// Creates a new [StyledButton] based on this one, overriding some values.
   ///
@@ -206,9 +201,9 @@ class StyledButton extends Button with EquatableMixin {
   /// you need to do that you'll have to do the copy manually by calling the
   /// constructor explicitly.
   StyledButton copyWith({
-    Action action,
-    Color backgroundColor,
-    Uri foregroundImage,
+    Action? action,
+    Color? backgroundColor,
+    Uri? foregroundImage,
   }) {
     return StyledButton(
       action ?? this.action,
@@ -234,11 +229,9 @@ class ImageButton extends Button with EquatableMixin {
   final Uri imageUri;
 
   /// Creates a button represented by [imageUri].
-  const ImageButton(Action action, this.imageUri)
-      : assert(imageUri != null),
-        super(action);
+  const ImageButton(Action action, this.imageUri) : super(action);
   @override
-  List<Object> get props => [action, imageUri];
+  List<Object?> get props => [action, imageUri];
 
   /// Creates a new [ImageButton] based on this one, overriding some values.
   ///
@@ -249,8 +242,8 @@ class ImageButton extends Button with EquatableMixin {
   /// you need to do that you'll have to do the copy manually by calling the
   /// constructor explicitly.
   ImageButton copyWith({
-    Action action,
-    Uri imageUri,
+    Action? action,
+    Uri? imageUri,
   }) {
     return ImageButton(
       action ?? this.action,
@@ -276,16 +269,16 @@ class ShowMenuAction extends Action with EquatableMixin {
   /// Creates a new [ShowMenuAction].
   ///
   /// The action will show the [menu] when activated.
-  const ShowMenuAction(this.menu) : assert(menu != null);
+  const ShowMenuAction(this.menu);
   @override
-  List<Object> get props => [menu];
+  List<Object?> get props => [menu];
 
   /// Creates a new [ShowMenuAction] based on this one, overriding some values.
   ///
   /// Values not specified as arguments will be copied from this
   /// [ShowMenuAction].
   ShowMenuAction copyWith({
-    Menu menu,
+    Menu? menu,
   }) {
     return ShowMenuAction(
       menu ?? this.menu,
@@ -309,7 +302,7 @@ class CloseMenuAction extends Action with EquatableMixin {
   /// Creates a new [CloseMenuAction].
   const CloseMenuAction();
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 
   /// Creates a new [CloseMenuAction] based on this one, overriding some
   /// values.
@@ -335,16 +328,16 @@ class PlayContentAction extends Action with EquatableMixin {
   /// Creates a new [PlayContentAction].
   ///
   /// The action will play the [content] when activated.
-  const PlayContentAction(this.content) : assert(content != null);
+  const PlayContentAction(this.content);
   @override
-  List<Object> get props => [content];
+  List<Object?> get props => [content];
 
   /// Creates a new [PlayContentAction] based on this one, overriding some values.
   ///
   /// Values not specified as arguments will be copied from this
   /// [PlayContentAction].
   PlayContentAction copyWith({
-    Playable content,
+    Playable? content,
   }) {
     return PlayContentAction(
       content ?? this.content,

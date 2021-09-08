@@ -3,14 +3,14 @@ import 'package:test/test.dart';
 import 'package:lunofono_bundle/lunofono_bundle.dart';
 
 void testCopyWithSingleMedium({
-  dynamic original,
-  Uri newResource,
-  Duration newMaxDuration,
+  required dynamic original,
+  Uri? newResource,
+  Duration? newMaxDuration,
 }) {
   assert(original is SingleMedium);
   group('${original.runtimeType} success when', () {
-    final originalResource = original.resource as Uri;
-    final originalMaxDuration = original.maxDuration as Duration;
+    final originalResource = original.resource as Uri?;
+    final originalMaxDuration = original.maxDuration as Duration?;
 
     void expectUnchangedOriginalNotSame(dynamic copy) {
       expect(copy, isNot(same(original)));
@@ -19,7 +19,7 @@ void testCopyWithSingleMedium({
     }
 
     test('no arguments', () {
-      final copy = original.copyWith() as SingleMedium;
+      final copy = original.copyWith() as SingleMedium?;
       expectUnchangedOriginalNotSame(copy);
       // should make an exact copy
       expect(copy, equals(original));
@@ -58,13 +58,14 @@ void testCopyWithSingleMedium({
 }
 
 void testCopyWithMultiMediumTrack<P extends Playable>({
-  dynamic original, // dynamic because MultiMediumTrack has no copyWith method
-  List<P> newMedia,
+  required dynamic
+      original, // dynamic because MultiMediumTrack has no copyWith method
+  List<P>? newMedia,
 }) {
   assert(original is MultiMediumTrack);
   group('${original.runtimeType}', () {
     group('success when', () {
-      final originalMedia = original.media as List<SingleMedium>;
+      final originalMedia = original.media as List<SingleMedium>?;
 
       void expectUnchangedOriginalNotSame(dynamic copy) {
         expect(copy, isNot(same(original)));
@@ -72,7 +73,7 @@ void testCopyWithMultiMediumTrack<P extends Playable>({
       }
 
       test('no arguments', () {
-        final copy = original.copyWith() as MultiMediumTrack;
+        final copy = original.copyWith() as MultiMediumTrack?;
         expectUnchangedOriginalNotSame(copy);
         // should make an exact copy
         expect(copy, equals(original));
@@ -97,15 +98,15 @@ void testCopyWithMultiMediumTrack<P extends Playable>({
 
 void testCopyWithBackgroundMultiMediumTrack<P extends Playable>({
   // dynamic because BackgroundMultiMediumTrack has no copyWith method
-  dynamic original,
-  List<P> newMedia,
-  bool newIsLooping,
+  required dynamic original,
+  List<P>? newMedia,
+  bool? newIsLooping,
 }) {
   assert(original is BackgroundMultiMediumTrack);
   group('${original.runtimeType}', () {
     group('success when', () {
-      final originalMedia = original.media as List<SingleMedium>;
-      final originalIsLooping = original.isLooping as bool;
+      final originalMedia = original.media as List<SingleMedium>?;
+      final originalIsLooping = original.isLooping as bool?;
 
       void expectUnchangedOriginalNotSame(dynamic copy) {
         expect(copy, isNot(same(original)));
@@ -114,7 +115,7 @@ void testCopyWithBackgroundMultiMediumTrack<P extends Playable>({
       }
 
       test('no arguments', () {
-        final copy = original.copyWith() as BackgroundMultiMediumTrack;
+        final copy = original.copyWith() as BackgroundMultiMediumTrack?;
         expectUnchangedOriginalNotSame(copy);
         // should make an exact copy
         expect(copy, equals(original));
@@ -163,17 +164,17 @@ void testCopyWithBackgroundMultiMediumTrack<P extends Playable>({
 
 void testCopyWithMultiMedium<T1 extends MultiMediumTrack,
     T2 extends BackgroundMultiMediumTrack>({
-  MultiMedium original,
-  T1 newMainTrack,
-  T2 newBackgroundTrack,
-  bool newIsSyncingTracks,
-  Duration newMaxDuration,
-  String description,
+  MultiMedium? original,
+  T1? newMainTrack,
+  T2? newBackgroundTrack,
+  bool? newIsSyncingTracks,
+  Duration? newMaxDuration,
+  String? description,
 }) {
   final desc = description == null ? '' : ' ($description)';
   group('${original.runtimeType}$desc', () {
     group('success when', () {
-      final originalMainTrack = original.mainTrack;
+      final originalMainTrack = original!.mainTrack;
       final originalBackgroundTrack = original.backgroundTrack;
       final originalMaxDuration = original.maxDuration;
 
@@ -253,11 +254,11 @@ void testCopyWithMultiMedium<T1 extends MultiMediumTrack,
 
     group('asserts when', () {
       test('mainTrack is NoTrack', () {
-        expect(() => original.copyWith(mainTrack: const NoTrack()),
+        expect(() => original!.copyWith(mainTrack: const NoTrack()),
             throwsA(isA<AssertionError>()));
       });
       test('mainTrack is BackgroundMultiMediumTrack', () {
-        expect(() => original.copyWith(mainTrack: newBackgroundTrack),
+        expect(() => original!.copyWith(mainTrack: newBackgroundTrack),
             throwsA(isA<AssertionError>()));
       });
     });
@@ -265,13 +266,13 @@ void testCopyWithMultiMedium<T1 extends MultiMediumTrack,
 }
 
 void testCopyWithPlayList({
-  Playlist original,
-  List<Medium> newMedia,
-  InheritableConfig newConfig,
+  Playlist? original,
+  List<Medium>? newMedia,
+  InheritableConfig? newConfig,
 }) {
   group('${original.runtimeType}', () {
     group('success when', () {
-      final originalMedia = original.media;
+      final originalMedia = original!.media;
       final originalConfig = original.config;
 
       void expectUnchangedOriginalNotSame(dynamic copy) {
@@ -319,7 +320,7 @@ void testCopyWithPlayList({
 
     group('asserts when', () {
       test('media has no elements', () {
-        expect(() => original.copyWith(media: <Medium>[]),
+        expect(() => original!.copyWith(media: <Medium>[]),
             throwsA(isA<AssertionError>()));
       });
     });
