@@ -81,7 +81,7 @@ void testGridMenu() {
           final expectedColor = Color(9000 + 100 * i + 90 + j);
           expect(button.backgroundColor, equals(expectedColor),
               reason: ' Details: row=$i, col=$j, '
-                  'backgroundColor=${button.backgroundColor.value}, '
+                  'backgroundColor=${button.backgroundColor!.value}, '
                   'expected=${expectedColor.value}');
         }
       }

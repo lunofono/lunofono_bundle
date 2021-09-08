@@ -5,14 +5,6 @@ import 'package:lunofono_bundle/lunofono_bundle.dart';
 
 void main() {
   group('ImageButton', () {
-    test('constructor asserts on null action or imageUri', () {
-      expect(() => ImageButton(null, null), throwsA(isA<AssertionError>()));
-      expect(() => ImageButton(_MockAction(), null),
-          throwsA(isA<AssertionError>()));
-      expect(() => ImageButton(null, Uri.parse('some/image.png')),
-          throwsA(isA<AssertionError>()));
-    });
-
     test('equality works', () {
       final action1 = _MockAction();
       final action2 = _MockAction();

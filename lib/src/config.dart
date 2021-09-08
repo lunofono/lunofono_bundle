@@ -33,12 +33,11 @@ class InheritableConfig with EquatableMixin {
   /// If [orientation] is specified, then a particular orientation will be
   /// used. When null, [Orientation.inherited] will be used.
   const InheritableConfig({
-    Orientation orientation,
-    Map<Trigger, Reaction> reactions,
-  })  : orientation = orientation ?? Orientation.inherited,
-        reactions = reactions ?? inheritedReactions;
+    this.orientation = Orientation.inherited,
+    this.reactions = inheritedReactions,
+  });
   @override
-  List<Object> get props => [orientation, reactions];
+  List<Object?> get props => [orientation, reactions];
 
   /// Creates a new [InheritableConfig] based on this one, overriding some
   /// values.
@@ -46,8 +45,8 @@ class InheritableConfig with EquatableMixin {
   /// Values not specified as arguments will be copied from this
   /// [InheritableConfig].
   InheritableConfig copyWith({
-    Map<Trigger, Reaction> reactions,
-    Orientation orientation,
+    Map<Trigger, Reaction>? reactions,
+    Orientation? orientation,
   }) {
     return InheritableConfig(
       reactions: reactions ?? this.reactions,

@@ -10,7 +10,7 @@ void testEqualitySingleMedium<T extends SingleMedium>(
 ) {
   dynamic constructor(
     Uri resource, {
-    Duration maxDuration,
+    Duration maxDuration = const UnlimitedDuration(),
   }) {
     if (T == Audio) {
       return Audio(resource, maxDuration: maxDuration);
@@ -71,11 +71,9 @@ void testEqualityMultiMediumTrack<T extends MultiMediumTrack,
 ) {
   dynamic constructor(List<P> media) {
     if (P == Audible) {
-      return AudibleMultiMediumTrack(
-          media == null ? null : List<Audible>.from(media));
+      return AudibleMultiMediumTrack(List<Audible>.from(media));
     } else if (P == Visualizable) {
-      return VisualizableMultiMediumTrack(
-          media == null ? null : List<Visualizable>.from(media));
+      return VisualizableMultiMediumTrack(List<Visualizable>.from(media));
     } else {
       assert(false);
     }
@@ -105,15 +103,14 @@ void testEqualityBackgroundMultiMediumTrack<
 ) {
   dynamic constructor(
     List<P> media, {
-    bool loop,
+    bool loop = false,
   }) {
     if (P == Audible) {
-      return AudibleBackgroundMultiMediumTrack(
-          media == null ? null : List<Audible>.from(media),
+      return AudibleBackgroundMultiMediumTrack(List<Audible>.from(media),
           loop: loop);
     } else if (P == Visualizable) {
       return VisualizableBackgroundMultiMediumTrack(
-          media == null ? null : List<Visualizable>.from(media),
+          List<Visualizable>.from(media),
           loop: loop);
     } else {
       assert(false);

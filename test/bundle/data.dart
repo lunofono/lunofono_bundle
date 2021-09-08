@@ -61,7 +61,7 @@ final gridMenu1x2 = GridMenu(
     styledButtonRedCloseMenu,
     styledButtonGreenPlayAudio1,
   ],
-  config: null,
+  config: inheritedConfig,
 );
 
 final gridMenu2x1 = GridMenu(
