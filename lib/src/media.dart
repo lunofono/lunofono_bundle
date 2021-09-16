@@ -61,7 +61,8 @@ abstract class Medium implements Playable {
   ///
   /// If [maxDuration] is set to an [UnlimitedDuration] (the default when null),
   /// this [Medium] will play for as long as it lasts.
-  const Medium({this.maxDuration = const UnlimitedDuration()});
+  const Medium({Duration? maxDuration})
+      : maxDuration = maxDuration ?? const UnlimitedDuration();
 }
 
 /// A [Medium] with a single resource.
@@ -81,7 +82,7 @@ abstract class SingleMedium extends Medium with EquatableMixin {
   /// Creates a [SingleMedium] pointing to a [resource].
   const SingleMedium(
     this.resource, {
-    Duration maxDuration = const UnlimitedDuration(),
+    Duration? maxDuration,
   }) : super(maxDuration: maxDuration);
   @override
   List<Object?> get props => [resource, maxDuration];
@@ -101,7 +102,7 @@ class Audio extends SingleMedium implements Audible {
   /// Creates a single [Audio] [Medium].
   const Audio(
     Uri resource, {
-    Duration maxDuration = const UnlimitedDuration(),
+    Duration? maxDuration,
   }) : super(
           resource,
           maxDuration: maxDuration,
@@ -123,7 +124,7 @@ class Image extends SingleMedium implements Visualizable {
   /// Creates a single [Image] [Medium].
   const Image(
     Uri resource, {
-    Duration maxDuration = const UnlimitedDuration(),
+    Duration? maxDuration,
   }) : super(
           resource,
           maxDuration: maxDuration,
@@ -145,7 +146,7 @@ class Video extends SingleMedium implements Visualizable, Audible {
   /// Creates a single [Video] [Medium].
   const Video(
     Uri resource, {
-    Duration maxDuration = const UnlimitedDuration(),
+    Duration? maxDuration,
   }) : super(
           resource,
           maxDuration: maxDuration,
